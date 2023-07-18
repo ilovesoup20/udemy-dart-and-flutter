@@ -28,7 +28,7 @@ class BlocLoginScreen extends StatelessWidget {
           emailField(bloc),
           passwordField(bloc),
           Container(margin: const EdgeInsets.only(top: 25.0)),
-          submitButton(),
+          submitButton(bloc),
         ],
       ),
     );
@@ -68,10 +68,15 @@ Widget passwordField(bloc) {
       });
 }
 
-Widget submitButton() {
-  return ElevatedButton(
-    style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-    onPressed: () {},
-    child: const Text('Login'),
+Widget submitButton(bloc) {
+  return StreamBuilder(
+    stream: bloc.submitValid,
+    builder: (context, snapshot) {
+      return ElevatedButton(
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+        onPressed: !snapshot.hasData ? null : bloc.submit,
+        child: const Text('Login'),
+      );
+    },
   );
 }
