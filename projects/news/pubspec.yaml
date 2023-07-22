@@ -9,6 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  sqflite: ^2.2.8+4
+  path_provider: ^0.4.1
+  http: any
+  test: ^1.22.0
 
 dev_dependencies:
   flutter_test:
