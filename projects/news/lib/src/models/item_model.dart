@@ -11,7 +11,7 @@ class Item {
   late final String? url;
   late final int? score;
   late final String? title;
-  late final int? descendents;
+  late final int? descendants;
 
   Item.fromJson(Map<String, dynamic> parsedJson)
       : id = parsedJson['id'],
@@ -26,5 +26,5 @@ class Item {
         url = parsedJson['url'],
         score = parsedJson['score'],
         title = parsedJson['title'],
-        descendents = parsedJson['descendents'];
+        descendants = parsedJson['descendants'];
 }
