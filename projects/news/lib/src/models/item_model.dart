@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Item {
   late final int? id;
   late final bool? deleted;
@@ -27,4 +29,36 @@ class Item {
         score = parsedJson['score'],
         title = parsedJson['title'],
         descendants = parsedJson['descendants'];
+
+  Item.fromMap(Map<String, dynamic> parsedJson)
+      : id = parsedJson['id'],
+        deleted = parsedJson['deleted'] == 1,
+        type = parsedJson['type'],
+        by = parsedJson['by'],
+        time = parsedJson['time'],
+        text = parsedJson['text'],
+        dead = parsedJson['dead'] == 1,
+        parent = parsedJson['parent'],
+        kids = jsonDecode(parsedJson['kids']),
+        url = parsedJson['url'],
+        score = parsedJson['score'],
+        title = parsedJson['title'],
+        descendants = parsedJson['descendants'];
+
+  Map<String, dynamic> toMapToDb() {
+    return <String, dynamic>{
+      "id": id,
+      "type": type,
+      "by": by,
+      "time": time,
+      "text": text,
+      "parent": parent,
+      "url": url,
+      "score": score,
+      "title": title,
+      "descendants": descendants,
+      "deleted": deleted ?? false ? 1 : 0,
+      "dead": dead ?? false ? 1 : 0
+    };
+  }
 }
